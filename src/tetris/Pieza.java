@@ -2,7 +2,7 @@ package tetris;
 
 import java.awt.Graphics;
 
-public class Pieza implements Runnable{
+public class Pieza implements Runnable, InformacionGeneral{
     SuperficieDeDibujo superficieDeDibujo;
     Tablero tablero;
     Imagen imagen;
@@ -54,7 +54,7 @@ public class Pieza implements Runnable{
         for (int i = 0; i < PA.periferico.length; i++) {
             int columna = PA.periferico[i].intX() + posicion.intX(),
                     fila = PA.periferico[i].intY() + posicion.intY();
-            String dato = PA.nombre;
+            int dato = PA.nombre;
 
             tablero.Tablero[columna][fila] = dato;
         }
@@ -103,7 +103,7 @@ public class Pieza implements Runnable{
                 return true;
             }
 
-            if(!tablero.Obtener((int)XReal, (int)YReal).equals("")) {
+            if(tablero.Obtener((int)XReal, (int)YReal) != NO_TETRIMINO) {
                 return true;
             }
         }

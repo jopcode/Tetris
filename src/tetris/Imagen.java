@@ -3,51 +3,50 @@ package tetris;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Imagen {
+public class Imagen implements InformacionGeneral{
     
     SuperficieDeDibujo superficieDeDibujo;
     Dupla posicionTablero;
-    int lado;
+ 
     
     public Imagen(SuperficieDeDibujo superficieDeDibujo) {
         this.superficieDeDibujo = superficieDeDibujo;
         posicionTablero = superficieDeDibujo.tablero.posicion;
-        lado = superficieDeDibujo.tablero.LADO;
     }
     
     public Dupla calcularPosicion(Dupla pos) {
-        int X = (int)(pos.X * lado + posicionTablero.X);
-        int Y = (int)(pos.Y * lado + posicionTablero.Y);
+        int X = (int)(pos.X * ANCHO_TETRIMINO + posicionTablero.X);
+        int Y = (int)(pos.Y * ALTO_TETRIMINO + posicionTablero.Y);
         return new Dupla(X, Y);
     }
     
-    public void dibujarPeriferico(Dupla pos, Graphics g, String tipo) {
+    public void dibujarPeriferico(Dupla pos, Graphics g, int tipo) {
         Color color;
         switch(tipo){
-            case"Z":
+            case 0:
                 g.setColor(new Color(228, 0, 39));
                 break;
-            case"S":
+            case 1:
                 g.setColor(new Color(0, 228, 39));
                 break;
-            case"J":
+            case 2:
                 g.setColor(new Color(0, 78, 228));
                 break;
-            case"L":
+            case 3:
                 g.setColor(new Color(228, 98, 0));
                 break;
-            case"T":
+            case 4:
                 g.setColor(new Color(158,19, 228));
                 break;
-            case"O":
+            case 5:
                 g.setColor(new Color(228, 222, 0));
                 break;
-            case"I":
+            case 6:
                 g.setColor(new Color(0, 228, 228));
                 break;
         }
-        g.fillRect((int)calcularPosicion(pos).X, (int)calcularPosicion(pos).Y, lado, lado);
+        g.fillRect((int)calcularPosicion(pos).X, (int)calcularPosicion(pos).Y, ANCHO_TETRIMINO, ALTO_TETRIMINO);
         g.setColor(Color.BLACK);
-        g.drawRect((int)calcularPosicion(pos).X, (int)calcularPosicion(pos).Y, lado, lado);
+        g.drawRect((int)calcularPosicion(pos).X, (int)calcularPosicion(pos).Y, ANCHO_TETRIMINO, ALTO_TETRIMINO);
     }
 }
