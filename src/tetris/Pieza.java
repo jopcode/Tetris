@@ -56,7 +56,11 @@ public class Pieza implements Runnable, InformacionGeneral{
                     fila = PA.periferico[i].intY() + posicion.intY();
             int dato = PA.nombre;
 
-            tablero.Tablero[columna][fila] = dato;
+            if((fila -1) == 0) {
+                tablero.borrarTodo();
+            } else {
+                tablero.Tablero[columna][fila] = dato;
+            }
         }
     }
 
@@ -82,6 +86,9 @@ public class Pieza implements Runnable, InformacionGeneral{
     }
 
     public void moverAbajo() {
+        if(fueraTablero()) {
+            tablero.borrarTodo();
+        }
         posicion.moverAbajo();
         if(movimientoErroneo()) {
             posicion.moverArriba();
@@ -110,6 +117,13 @@ public class Pieza implements Runnable, InformacionGeneral{
         return false;
     }
 
+    public boolean fueraTablero() {
+        if(tablero.Tablero[0][0] != NO_TETRIMINO) {
+            return true;
+        } 
+        return false;
+    }
+    
     @Override
     public void run() {
         try {

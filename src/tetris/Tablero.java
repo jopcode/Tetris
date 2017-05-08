@@ -46,10 +46,16 @@ public class Tablero implements InformacionGeneral{
             } else {
                 Y--;
             }
-            System.out.println("Lineas: " + lineas);
         }
     }
     
+    public void borrarTodo() {
+        for (int X = 0; X < COLUMNAS; X++) {
+            for (int Y = 0; Y < FILAS; Y++) {
+                Tablero[X][Y] = NO_TETRIMINO;
+            }
+        }
+    }
     
     public void bajarCompletos(int Y) {
         for (int X = 0; X < COLUMNAS; X++) {
@@ -73,7 +79,7 @@ public class Tablero implements InformacionGeneral{
     public void dibujar(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Verdana", Font.PLAIN, 16));
-        g.drawString("Score:" + lineas, (int)(ALTO_MINO + posicion.Y), ANCHO_MINO);
+        g.drawString("Score:" + lineas, ANCHO_TABLERO - ANCHO_MINO, COLUMNAS + ANCHO_MINO);
         
         for (int Y = 0; Y < FILAS; Y++) {
             for (int X = 0; X < COLUMNAS; X++) {

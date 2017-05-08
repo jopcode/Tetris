@@ -10,7 +10,7 @@ public class Ventana extends JFrame{
         this.setTitle(nombre);
         this.setIconImage(superficieDeDibujo.imagen.cargarImagen("icon", ".png"));
         //this.setSize(600,600);
-        this.setResizable(true);
+        this.setResizable(false);
         this.setLayout(new BorderLayout());
         this.add(superficieDeDibujo);
         this.pack();

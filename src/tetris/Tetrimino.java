@@ -27,7 +27,7 @@ public class Tetrimino implements InformacionGeneral{
             case TETRIMINO_J:
                 return new Tetrimino(new Dupla(0,0), new Dupla(-1,-1), new Dupla(-1,0), new Dupla(1,0), nombre);
             case TETRIMINO_L:
-                return new Tetrimino(new Dupla(0,0), new Dupla(-1,0), new Dupla(-1,-1), new Dupla(1,0), nombre);
+                return new Tetrimino(new Dupla(0,0), new Dupla(-1,0), new Dupla(1,0), new Dupla(1,-1), nombre);
             case TETRIMINO_T:
                 return new Tetrimino(new Dupla(0,0), new Dupla(0,-1), new Dupla(-1,0), new Dupla(1,0), nombre);
             case TETRIMINO_O:

@@ -4,13 +4,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-public class Imagen implements InformacionGeneral{
+public class Imagen extends FiltroImagenes implements InformacionGeneral{
     
     SuperficieDeDibujo superficieDeDibujo;
     Dupla posicionTablero;
-    final String[] NOMBRE_IMAGEN = {"Z", "S", "J", "L", "T", "O", "I"}; 
-    //Color TetriminosColor[] = {new Color(228, 0, 39), new Color(0, 228, 39), new Color(0, 78, 228), new Color(228, 98, 0), new Color(158,19, 228), new Color(228, 222, 0),  new Color(0, 228, 228)};
-    BufferedImage[] Perifericos = new BufferedImage[NOMBRE_IMAGEN.length];
+    final String[] NOMBRE_IMAGEN = {"Z", "S", "J", "L", "T", "O", "I"};
+    BufferedImage[] IMAGEN_PERIFERICO = new BufferedImage[NOMBRE_IMAGEN.length];
     
     public Imagen(SuperficieDeDibujo superficieDeDibujo) {
         this.superficieDeDibujo = superficieDeDibujo;
@@ -25,12 +24,13 @@ public class Imagen implements InformacionGeneral{
     }
     
     public void dibujarPeriferico(Dupla pos, Graphics g, int nombre) {
-        g.drawImage(Perifericos[nombre], calcularPosicion(pos).intX(), calcularPosicion(pos).intY(), superficieDeDibujo);
+        g.drawImage(IMAGEN_PERIFERICO[nombre], calcularPosicion(pos).intX(), calcularPosicion(pos).intY(), superficieDeDibujo);
     }
     
     private void cargarImagenesP() {
-        for (int i = 0; i < Perifericos.length; i++) {
-            Perifericos[i] = cargarImagen(NOMBRE_IMAGEN[i], ".png");
+        for (int i = 0; i < IMAGEN_PERIFERICO.length; i++) {
+            IMAGEN_PERIFERICO[i] = cargarImagen(NOMBRE_IMAGEN[i], ".png");
+            IMAGEN_PERIFERICO[i] = escalarImagen(IMAGEN_PERIFERICO[i], ANCHO_MINO, ALTO_MINO);
         }
     }
     

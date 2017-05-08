@@ -35,7 +35,7 @@ public class SuperficieDeDibujo extends Canvas{
         }
     
         g = buffer.getDrawGraphics();
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(new Color(96, 82, 86));
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         
         tablero.dibujar((Graphics2D)g);
