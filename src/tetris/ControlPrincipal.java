@@ -13,7 +13,7 @@ public class ControlPrincipal {
     }
     
     public static void iniciarJuego() {
-        crearVentana(950, 600, "Tetris | @jopcode");
+        crearVentana(950, 600, "Tetris v1");
         iterarBuclePrincipal();
     }
     

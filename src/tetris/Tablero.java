@@ -6,13 +6,16 @@ import java.awt.Graphics2D;
 
 public class Tablero implements InformacionGeneral{
 
-    int[][] Tablero;
-    SuperficieDeDibujo superficieDeDibujo;
+    //final int COLUMNAS = 10, FILAS = 20, LADO = 28;
+    int Tablero[][];
     int anchoSDD, altoSDD;
+    int lineas = 0;
+    SuperficieDeDibujo superficieDeDibujo;
     Dupla posicion;
     Imagen imagen;
-    int lineas = 0;
-
+    Color CASILLA_CLARA = new Color(69, 13, 153);
+    Color CASILLA_OSCURA = new Color(55, 11, 122);
+    
     public Tablero(SuperficieDeDibujo superficieDeDibujo) {
         this.superficieDeDibujo = superficieDeDibujo;
         calcularPosicion();
@@ -30,7 +33,7 @@ public class Tablero implements InformacionGeneral{
 
     public void borrarCompletados() {
         int Y = FILAS - 1;
-   
+
         while (Y >= 0) {
             int X = 0;
             while (X < COLUMNAS && Tablero[X][Y] != NO_TETRIMINO) {
@@ -70,24 +73,24 @@ public class Tablero implements InformacionGeneral{
     public void dibujar(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Verdana", Font.PLAIN, 16));
-        g.drawString("Score:" + lineas, 20, ALTO_TETRIMINO);
+        g.drawString("Score:" + lineas, (int)(ALTO_MINO + posicion.Y), ANCHO_MINO);
         
         for (int Y = 0; Y < FILAS; Y++) {
             for (int X = 0; X < COLUMNAS; X++) {
-                Dupla posTemp = new Dupla(X * ANCHO_TETRIMINO + posicion.X, Y * ALTO_TETRIMINO + posicion.Y);
+                Dupla posTemp = new Dupla(X * ANCHO_MINO + posicion.X, Y * ALTO_MINO + posicion.Y);
 
                 if ((Tablero[X][Y]) == NO_TETRIMINO) {
                     Color color;
                     if ((X + Y) % 2 == 0) {
-                        color = new Color(69, 13, 153);
+                        color = CASILLA_CLARA;
                     } else {
-                        color = new Color(55, 11, 122);
+                        color = CASILLA_OSCURA;
                     }
                     g.setColor(color);
-                    g.fillRect(posTemp.intX(), posTemp.intY(), ANCHO_TETRIMINO, ALTO_TETRIMINO);
+                    g.fillRect(posTemp.intX(), posTemp.intY(), ANCHO_MINO, ALTO_MINO);
 
                     g.setColor(new Color(0, 0, 0));
-                    g.drawRect(posTemp.intX(), posTemp.intY(), ANCHO_TETRIMINO, ALTO_TETRIMINO);
+                    g.drawRect(posTemp.intX(), posTemp.intY(), ANCHO_MINO, ALTO_MINO);
                 } else {
                     imagen.dibujarPeriferico(new Dupla(X, Y), g, Tablero[X][Y]);
                 }
@@ -101,5 +104,5 @@ public class Tablero implements InformacionGeneral{
             return Tablero[X][Y];
         }
         return NO_TETRIMINO;
-    }
+    }   
 }

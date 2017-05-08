@@ -36,7 +36,7 @@ public class Tetrimino implements InformacionGeneral{
                 return new Tetrimino(new Dupla(0,0), new Dupla(-1,0), new Dupla(1,0), new Dupla(2,0), nombre);
             
         }
-        return new Tetrimino(new Dupla(0,0), new Dupla(0,0), new Dupla(0,0), new Dupla(0,0), nombre);
+        return new Tetrimino(new Dupla(0,0), new Dupla(0,0), new Dupla(0,0), new Dupla(0,0), NO_TETRIMINO);
     }
     
     public void girarDerecha() {
